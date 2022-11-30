@@ -1,3 +1,4 @@
+package sorts;
 import java.io.File;
 import java.io.IOException;
 import java.util.Scanner;
@@ -17,7 +18,15 @@ public class QuickSortInsertionSort {
 		compara = 0;
 		move = 0;
 	}
-
+	
+	public int getCompara() {
+		return compara;
+	}
+	
+	public int getMove() {
+		return move;
+	}
+	
 	public void insert(long value) {
 		data[len] = value;
 		len++;
@@ -34,9 +43,8 @@ public class QuickSortInsertionSort {
 	}
 
 	public void quickSort() throws IOException {
-		Tempo tempo = new Tempo();
+	
 		recQuickSort(0, len - 1);
-		Log.logQuickSortInsertion(data.length, M, tempo, compara, move);
 	}
 
 	public void recQuickSort(int left, int right) throws IOException {
@@ -115,7 +123,7 @@ public class QuickSortInsertionSort {
 
 	public static void main(String[] args) throws IOException {
 
-		try (Scanner input = new Scanner(new File("C:\\in_100000.txt"))) {
+		try (Scanner input = new Scanner(new File("C:\\\\Users\\\\biela\\\\Downloads\\\\input_100k.txt"))) {
 			QuickSortInsertionSort arr = new QuickSortInsertionSort(100000);
 
 			while (input.hasNextLine()) {
@@ -128,9 +136,11 @@ public class QuickSortInsertionSort {
 				}
 			}
 
-			arr.display();
+			//arr.display();
 			arr.quickSort();
-			arr.display();
+			//arr.display();
+        System.out.println("Comparações:"+arr.getCompara() +" e "+"Movimentações:"+ arr.getMove());
+
 
 		} catch (IOException e) {
 			e.printStackTrace();

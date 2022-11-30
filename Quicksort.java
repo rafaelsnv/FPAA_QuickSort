@@ -1,3 +1,4 @@
+package sorts;
 import java.io.File;
 import java.io.IOException;
 import java.util.Scanner;
@@ -14,7 +15,12 @@ public class Quicksort {
         compara = 0;
         move = 0;
     }
-
+	public int getCompara() {
+		return compara;
+	}
+	public int getMove() {
+		return move;
+	}
     public int[] getData() {
         return data;
     }
@@ -46,15 +52,13 @@ public class Quicksort {
     }
 
     static void quickSort(int[] arr, int low, int high) throws IOException {
-        Tempo tempo = new Tempo();
-
+  
         if (low < high) {
             int pi = partition(arr, low, high);
             quickSort(arr, low, pi - 1);
             quickSort(arr, pi + 1, high);
         }
 
-        Log.logQuickSort(Quicksort.data.length, tempo, compara, move);
     }
 
     static void printArray(int[] arr, int size) {
@@ -65,22 +69,23 @@ public class Quicksort {
     }
 
     public static void main(String[] args) {
-        try (Scanner input = new Scanner(new File("C:\\in_1000000.txt"))) {
-            Quicksort arr = new Quicksort(1000000);
+        try (Scanner input = new Scanner(new File("C:\\Users\\biela\\Downloads\\input_10k.txt"))) {
+            Quicksort arr = new Quicksort(10000);
 
             while (input.hasNextLine()) {
                 String line = input.nextLine();
                 String[] content = line.split("\n");
 
                 for (int i = 0; i < content.length; i++) {
-                    arr.getData()[i] = Integer.parseInt(content[i]);
+                	arr.getData()[i] = Integer.parseInt(content[i]);
                 }
 
                 quickSort(arr.getData(), 0, arr.getN() - 1);
             }
 
-            System.out.println("Sorted array: ");
-            printArray(arr.getData(), arr.getN());
+          //  System.out.println("Sorted array: ");
+         //   printArray(arr.getData(), arr.getN());
+            System.out.println("Comparações:"+arr.getCompara() +" e "+"Movimentações:"+ arr.getMove());
 
         } catch (IOException e) {
             e.printStackTrace();
